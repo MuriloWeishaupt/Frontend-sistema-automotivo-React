@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import "../App.css"
 
 const FiltroVeiculo = ({ setVeiculos }) => {
     const [marca, setMarca] = useState("");
@@ -42,7 +43,7 @@ const FiltroVeiculo = ({ setVeiculos }) => {
     };
 
     return (
-        <div style={styles.container}>
+        <div>
             <input
                 type="text"
                 value={marca}
@@ -78,14 +79,6 @@ const FiltroVeiculo = ({ setVeiculos }) => {
     );
 };
 
-const styles = {
-    container: {
-        display: 'flex',
-        gap: '10px',
-        padding: '20px',
-        backgroundColor: '#f5f5f5',
-        marginBottom: '20px'
-    }
-};
+
 
 export default FiltroVeiculo;

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import "../App.css";
 
 const ListaVeiculos = ({ veiculos, onEdit, onDelete }) => {
+
+  console.log(veiculos)
+
   return (
     <div style={styles.container}>
       <h2 style={styles.titulo}>Lista de Veículos</h2>
@@ -14,6 +18,7 @@ const ListaVeiculos = ({ veiculos, onEdit, onDelete }) => {
               <th style={styles.th}>Marca</th>
               <th style={styles.th}>Modelo</th>
               <th style={styles.th}>Ano</th>
+              <th style={styles.th}>Cor</th>
               <th style={styles.th}>Placa</th>
               <th style={styles.th}>Preço</th>
               <th style={styles.th}>Status</th>
@@ -30,6 +35,7 @@ const ListaVeiculos = ({ veiculos, onEdit, onDelete }) => {
                   {veiculo.modelo?.nome || "N/A"}
                 </td>
                 <td style={{ ...styles.td, textAlign: "right" }}>{veiculo.ano}</td>
+                <td style={{ ...styles.td, textAlign: "right" }}>{veiculo.cor}</td>
                 <td style={{ ...styles.td, textAlign: "right" }}>{veiculo.placa}</td>
                 <td style={{ ...styles.td, textAlign: "right" }}>
                   {Number(veiculo.preco).toLocaleString("pt-BR", {

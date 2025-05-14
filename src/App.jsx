@@ -4,6 +4,7 @@ import ListaVeiculos from './Components/ListaVeiculos';
 import CadastraVeiculo from './Components/CadastraVeiculo';
 import FiltroVeiculo from './Components/FiltroVeiculo'; 
 import axios from 'axios';
+import logo from './assets/gran-auto.png';
 
 function App() {
   const [veiculos, setVeiculos] = useState([]);
@@ -18,7 +19,13 @@ function App() {
     try {
       await axios.put(`http://localhost:8080/veiculos/${veiculoAtualizado.id}`, veiculoAtualizado);
       setVeiculoEditando(null);
-      carregarVeiculos();
+      if (veiculoAtualizado.statusDisponibilidade === "VENDIDO") {
+        await axios.delete(`http://localhost:8080/veiculos/${veiculoAtualizado.id}`);
+        setVeiculos((prev) => prev.filter(v => v.id !== veiculoAtualizado.id));
+      } else {
+        setVeiculos((prev) => prev.map(v => v.id === veiculoAtualizado.id ? veiculoAtualizado : v))
+      };
+
     } catch (error) {
       console.error("Erro ao atualizar veículo:", error);
     }
@@ -39,16 +46,20 @@ function App() {
 
   return (
     <div>
-      <h1 >Concessionária Gran Auto</h1>
-
-      <CadastraVeiculo />
-      <FiltroVeiculo setVeiculos={setVeiculos} />
+      <img 
+        src={logo} 
+        alt="Logo Gran Auto" 
+        style={{ width: '200px', marginTop: '5px', marginLeft: "0px"}} 
+      />
 
       <ListaVeiculos
         veiculos={veiculos}
         onEdit={(veiculo) => setVeiculoEditando(veiculo)}
         onDelete={excluirVeiculo}
       />
+      <FiltroVeiculo setVeiculos={setVeiculos} />
+      <CadastraVeiculo />
+      
 
       {veiculoEditando && (
         <FormularioEdicao
@@ -60,5 +71,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

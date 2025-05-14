@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../App.css";
 
 const CadastraVeiculo = () => {
   const [marcas, setMarcas] = useState([]);
@@ -57,7 +58,7 @@ const CadastraVeiculo = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={formStyle}>
+    <form onSubmit={handleSubmit}>
       <h2>Cadastrar Veículo</h2>
 
       <select value={marcaSelecionada} onChange={(e) => setMarcaSelecionada(e.target.value)} required>
@@ -92,16 +93,6 @@ const CadastraVeiculo = () => {
   );
 };
 
-const formStyle = {
-  backgroundColor: "#1f1f1f",
-  color: "#fff",
-  padding: "20px",
-  borderRadius: "10px",
-  maxWidth: "500px",
-  margin: "auto",
-  display: "flex",
-  flexDirection: "column",
-  gap: "10px"
-};
+
 
 export default CadastraVeiculo;
