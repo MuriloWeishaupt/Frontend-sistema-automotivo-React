@@ -4,11 +4,12 @@ import ListaVeiculos from './Components/ListaVeiculos';
 import CadastraVeiculo from './Components/CadastraVeiculo';
 import FiltroVeiculo from './Components/FiltroVeiculo'; 
 import axios from 'axios';
-import logo from './assets/gran-auto.png';
+import Cabecalho from './Components/Cabecalho';
 
 function App() {
   const [veiculos, setVeiculos] = useState([]);
   const [veiculoEditando, setVeiculoEditando] = useState(null);
+  const [mostrarModal, setMostrarModal] = useState(false); 
 
   const carregarVeiculos = async () => {
     const response = await axios.get("http://localhost:8080/veiculos");
@@ -23,8 +24,8 @@ function App() {
         await axios.delete(`http://localhost:8080/veiculos/${veiculoAtualizado.id}`);
         setVeiculos((prev) => prev.filter(v => v.id !== veiculoAtualizado.id));
       } else {
-        setVeiculos((prev) => prev.map(v => v.id === veiculoAtualizado.id ? veiculoAtualizado : v))
-      };
+        setVeiculos((prev) => prev.map(v => v.id === veiculoAtualizado.id ? veiculoAtualizado : v));
+      }
 
     } catch (error) {
       console.error("Erro ao atualizar veículo:", error);
@@ -46,21 +47,21 @@ function App() {
 
   return (
     <div>
-      <img 
-        src={logo} 
-        alt="Logo Gran Auto" 
-        style={{ width: '200px', marginTop: '5px', marginLeft: "0px"}} 
-      />
+      <Cabecalho onCadastrarClick={() => setMostrarModal(true)} />
 
+      <FiltroVeiculo setVeiculos={setVeiculos} />
       <ListaVeiculos
         veiculos={veiculos}
         onEdit={(veiculo) => setVeiculoEditando(veiculo)}
         onDelete={excluirVeiculo}
       />
-      <FiltroVeiculo setVeiculos={setVeiculos} />
-      <CadastraVeiculo />
+    
+      <CadastraVeiculo 
+        mostrarModal={mostrarModal}
+        setMostrarModal={setMostrarModal}
+        aoCadastrar={carregarVeiculos}
+      />
       
-
       {veiculoEditando && (
         <FormularioEdicao
           veiculo={veiculoEditando}
@@ -71,6 +72,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

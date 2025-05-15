@@ -80,7 +80,7 @@ const formStyle = {
   flexDirection: "column",
   gap: "10px",
   maxWidth: "400px",
-  margin: "20px auto",
+  margin: "50px auto",
 };
 
 const selectStyle = {

@@ -7,8 +7,6 @@ const ListaVeiculos = ({ veiculos, onEdit, onDelete }) => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.titulo}>Lista de Veículos</h2>
-
       {veiculos.length === 0 ? (
         <p style={styles.mensagem}>Nenhum veículo encontrado!</p>
       ) : (
@@ -61,18 +59,16 @@ const ListaVeiculos = ({ veiculos, onEdit, onDelete }) => {
 
 const styles = {
   container: {
+    marginTop: "-20%",
     backgroundColor: "#121212",
     padding: "20px",
     borderRadius: "10px",
-    maxWidth: "900px",
+    maxWidth: "800px",
     margin: "40px auto",
     boxShadow: "0 0 10px rgba(0,0,0,0.5)",
     color: "#fff",
   },
-  titulo: {
-    textAlign: "center",
-    marginBottom: "20px",
-  },
+
   mensagem: {
     textAlign: "center",
     fontStyle: "italic",
@@ -104,8 +100,10 @@ const getStatusColor = (status) => {
       return "crimson";
     case "manutenção":
       return "orange";
+    case "reservado":
+      return "white"
     default:
-      return "gray";
+      return "limegreen";
   }
 };
 
