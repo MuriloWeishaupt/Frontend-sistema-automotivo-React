@@ -100,9 +100,9 @@ const CadastraVeiculo = ({ mostrarModal, setMostrarModal, aoCadastrar }) => {
 
             <select value={status} onChange={(e) => setStatus(e.target.value)} required>
               <option value="">Status</option>
-              <option value="Disponivel">Disponível</option>
-              <option value="Reservado">Reservado</option>
-              <option value="Manutencao">Manutenção</option>
+              <option value="DISPONÍVEL">DISPONÍVEL</option>
+              <option value="RESERVADO">RESERVADO</option>
+              <option value="MANUTENÇÃO">MANUTENÇÃO</option>
             </select>
 
             <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
