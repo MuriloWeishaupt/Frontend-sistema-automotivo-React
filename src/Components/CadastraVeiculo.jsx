@@ -15,7 +15,6 @@ const CadastraVeiculo = ({ mostrarModal, setMostrarModal, aoCadastrar }) => {
   const [quilometragem, setQuilometragem] = useState("");
   const [status, setStatus] = useState("");
 
-  // Carrega marcas ao abrir o modal
   useEffect(() => {
     if (mostrarModal) {
       axios.get("http://localhost:8080/marca")
@@ -24,7 +23,6 @@ const CadastraVeiculo = ({ mostrarModal, setMostrarModal, aoCadastrar }) => {
     }
   }, [mostrarModal]);
 
-  // Carrega modelos quando uma marca é selecionada
   useEffect(() => {
     if (marcaSelecionada) {
       axios.get(`http://localhost:8080/modelos/marca/${marcaSelecionada}`)
@@ -51,7 +49,7 @@ const CadastraVeiculo = ({ mostrarModal, setMostrarModal, aoCadastrar }) => {
 
       alert("Veículo cadastrado com sucesso!");
 
-      // Limpa o formulário
+
       setPlaca("");
       setAno("");
       setCor("");
@@ -61,7 +59,7 @@ const CadastraVeiculo = ({ mostrarModal, setMostrarModal, aoCadastrar }) => {
       setMarcaSelecionada("");
       setModeloSelecionado("");
 
-      // Fecha modal e recarrega lista
+
       setMostrarModal(false);
       aoCadastrar();
 

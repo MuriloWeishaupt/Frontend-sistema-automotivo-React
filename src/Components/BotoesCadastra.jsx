@@ -1,8 +1,9 @@
-const BotaoCadastra = ({ onClick }) => {
+const BotoesCadastra = ({ onClick }) => {
     return (
         <button style={styles.button} onClick={onClick}>
             Cadastrar Veículo
         </button>
+        
     );
 };
 
@@ -16,4 +17,4 @@ const styles = {
     }
 };
 
-export default BotaoCadastra;
+export default BotoesCadastra;

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import FormularioEdicao from './Components/FormularioEdicao';
 import ListaVeiculos from './Components/ListaVeiculos';
 import CadastraVeiculo from './Components/CadastraVeiculo';
+import CadastraModelo from './Components/CadastraModelo';
+import CadastraMarca from './Components/CadastraMarca';
 import FiltroVeiculo from './Components/FiltroVeiculo'; 
 import axios from 'axios';
 import Cabecalho from './Components/Cabecalho';
@@ -9,22 +11,32 @@ import Cabecalho from './Components/Cabecalho';
 function App() {
   const [veiculos, setVeiculos] = useState([]);
   const [veiculoEditando, setVeiculoEditando] = useState(null);
-  const [mostrarModal, setMostrarModal] = useState(false); 
+  const [mostrarModalVeiculo, setMostrarModalVeiculo] = useState(false);
+  const [mostrarModalMarca, setMostrarModalMarca] = useState(false);
+  const [mostrarModalModelo, setMostrarModalModelo] = useState(false);
+
 
   const carregarVeiculos = async () => {
-    const response = await axios.get("http://localhost:8080/veiculos");
-    setVeiculos(response.data);
+    try {
+      const response = await axios.get("http://localhost:8080/veiculos");
+      setVeiculos(response.data);
+    } catch (error) {
+      console.error("Erro ao carregar veículos:", error);
+    }
   };
 
   const atualizarVeiculo = async (veiculoAtualizado) => {
     try {
       await axios.put(`http://localhost:8080/veiculos/${veiculoAtualizado.id}`, veiculoAtualizado);
       setVeiculoEditando(null);
+
       if (veiculoAtualizado.statusDisponibilidade === "VENDIDO") {
         await axios.delete(`http://localhost:8080/veiculos/${veiculoAtualizado.id}`);
         setVeiculos((prev) => prev.filter(v => v.id !== veiculoAtualizado.id));
       } else {
-        setVeiculos((prev) => prev.map(v => v.id === veiculoAtualizado.id ? veiculoAtualizado : v));
+        setVeiculos((prev) =>
+          prev.map((v) => (v.id === veiculoAtualizado.id ? veiculoAtualizado : v))
+        );
       }
 
     } catch (error) {
@@ -47,21 +59,41 @@ function App() {
 
   return (
     <div>
-      <Cabecalho onCadastrarClick={() => setMostrarModal(true)} />
+      <Cabecalho
+        onCadastrarVeiculo={() => setMostrarModalVeiculo(true)}
+        onCadastrarMarca={() => setMostrarModalMarca(true)}
+        onCadastrarModelo={() => setMostrarModalModelo(true)}
+      />
 
       <FiltroVeiculo setVeiculos={setVeiculos} />
+
       <ListaVeiculos
         veiculos={veiculos}
         onEdit={(veiculo) => setVeiculoEditando(veiculo)}
         onDelete={excluirVeiculo}
       />
-    
-      <CadastraVeiculo 
-        mostrarModal={mostrarModal}
-        setMostrarModal={setMostrarModal}
+
+      <CadastraMarca
+        mostrarModal={mostrarModalMarca}
+        setMostrarModal={setMostrarModalMarca}
         aoCadastrar={carregarVeiculos}
       />
+
+      <CadastraModelo
+        mostrarModal={mostrarModalModelo}
+        setMostrarModal={setMostrarModalModelo}
+        aoCadastrar={carregarVeiculos}
+      />
+
+
+      <CadastraVeiculo
+        mostrarModal={mostrarModalVeiculo}
+        setMostrarModal={setMostrarModalVeiculo}
+        aoCadastrar={carregarVeiculos}
+      />
+
       
+
       {veiculoEditando && (
         <FormularioEdicao
           veiculo={veiculoEditando}

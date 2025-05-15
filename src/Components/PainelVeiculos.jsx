@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cabecalho from "./Cabecalho";
 import CadastraVeiculo from "./CadastraVeiculo";
-import BotaoCadastra from "./BotaoCadastra";
+import BotaoCadastra from "./BotoesCadastra";
 
 const PainelVeiculos = () => {
     const [mostrarModal, setMostrarModal] = useState(false);

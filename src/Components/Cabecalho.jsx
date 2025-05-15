@@ -1,17 +1,25 @@
-import React from 'react';
-import BotaoCadastra from "./BotaoCadastra";
 import logo from '../assets/gran-auto.png';
 
-const Cabecalho = ({ onCadastrarClick }) => {
+const Cabecalho = ({ onCadastrarVeiculo, onCadastrarMarca, onCadastrarModelo}) => {
     return (
-        <header style={styles.header}>
+       <header style={styles.header}>
             <img 
                 src={logo} 
                 alt="Logo Gran Auto" 
                 style={styles.logo} 
             />
-            <h1 style={styles.h1}>Concessionário Gran Auto</h1>
-            <BotaoCadastra onClick={onCadastrarClick} />
+            <h1 style={styles.h1}>Concessionária Gran Auto</h1>
+            <div style={styles.botoes}>
+                <button style={styles.button} onClick={onCadastrarMarca}>
+                    Cadastrar Marca
+                </button>
+                <button style={styles.button} onClick={onCadastrarModelo}>
+                    Cadastrar Modelo
+                </button>
+                <button style={styles.button} onClick={onCadastrarVeiculo}>
+                    Cadastrar Veículo
+                </button>
+            </div>
         </header>
     );
 };
