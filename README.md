@@ -1,16 +1,27 @@
-<<<<<<< HEAD
-# React + Vite
+# 🚗 Frontend - Sistema Automotivo (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o frontend do **Sistema Automotivo**, uma aplicação web desenvolvida com **React.js** que consome uma **API REST** construída com **Spring Boot**. O sistema permite o gerenciamento de veículos, marcas e modelos, oferecendo uma interface simples e intuitiva para realizar operações CRUD.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 🌐 Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Frontend-sistema-automotivo-React
->>>>>>> c20ab7e537779672a0a3b33c7b43e542b3127d88
+- React.js (Vite)
+- Axios (requisições HTTP)
+- React Router DOM (para rotas internas)
+- React Hook Form ou formulário controlado (para cadastros)
+- Bootstrap / TailwindCSS / CSS Modules (estilização)
+- Vite (para performance no desenvolvimento)
+
+
+
+## 📌 Funcionalidades
+
+- Interface visual para gerenciar:
+  - ✅ Marcas
+  - ✅ Modelos (relacionados às marcas)
+  - ✅ Veículos (relacionados às marcas e modelos)
+- Consumo de API REST com Axios
+- Navegação entre telas com React Router
+- Feedback visual para ações (cadastro, edição, exclusão)
+- Validação de formulários
